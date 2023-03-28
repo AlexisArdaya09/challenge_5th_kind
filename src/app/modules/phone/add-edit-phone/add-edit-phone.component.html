@@ -1,0 +1,73 @@
+<form class="row d-inline-flex" [formGroup]="phoneForm">
+  <div class="form-group">
+    <label for="cardName">Nombre Completo</label>
+    <input
+      formControlName="cardName"
+      id="cardName"
+      type="text"
+      class="form-control"
+    />
+    <div
+      *ngIf="f['cardName'].touched && f['cardName'].invalid"
+      class="alert alert-danger"
+    >
+      <div *ngIf="f['cardName'].errors && f['cardName'].errors['required']">
+        Card Name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="version">Version</label>
+    <input
+      formControlName="version"
+      id="version"
+      type="text"
+      class="form-control"
+    />
+    <div
+      *ngIf="f['version'].touched && f['version'].invalid"
+      class="alert alert-danger"
+    >
+      <div *ngIf="f['version'].errors && f['version'].errors['required']">
+        Version is required.
+      </div>
+      <div *ngIf="f['version'].errors && f['version'].errors['pattern']">
+        Invalid version format.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="contact">Contact</label>
+    <input
+      formControlName="contact"
+      id="contact"
+      type="text"
+      class="form-control"
+    />
+    <div
+      *ngIf="f['contact'].touched && f['contact'].invalid"
+      class="alert alert-danger"
+    >
+      <div *ngIf="f['contact'].errors && f['contact'].errors['required']">
+        Contact is required.
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary m-3"
+    (click)="save()"
+    type="submit"
+    [disabled]="!phoneForm.valid">
+    {{isEdit? 'Update':'Save'}}
+  </button>
+  <button
+  *ngIf="isEdit"
+    class="btn btn-primary m-3"
+    (click)="cancel()"
+    type="button">
+    Cancel
+  </button>
+</form>
